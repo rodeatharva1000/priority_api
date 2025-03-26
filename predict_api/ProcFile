@@ -1,0 +1,2 @@
+web: gunicorn predict_api.wsgi --log-file -
+web: python manage. py migrate && gunicorn predict_api.wsgi
