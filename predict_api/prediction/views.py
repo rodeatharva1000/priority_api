@@ -10,10 +10,8 @@ import pickle
 import math
 import uuid
 
-# Load the model and scaler when the server starts
-# Update with your actual path
 model = load_model('C:\\Users\\rodea\\Downloads\\predict_api\\model_requirements\\model.h5')
-with open('C:\\Users\\rodea\\Downloads\\predict_api\\model_requirements\\scaler.pkl', 'rb') as f:  # Update with your actual path
+with open('C:\\Users\\rodea\\Downloads\\predict_api\\model_requirements\\scaler.pkl', 'rb') as f:  
     scaler = pickle.load(f)
 
 
@@ -52,7 +50,6 @@ class EquipmentEvaluationView(APIView):
         results = []
 
         for idx, equipment in enumerate(data['equipments']):
-            # Prepare input for model prediction
             input_data = np.array([[
                 user_data['category'],
                 user_data['farm_type'],
@@ -92,7 +89,6 @@ class EquipmentEvaluationView(APIView):
                 'equipment_longitude': equipment['longitude']
             })
 
-        # Sort results by points in descending order
         sorted_results = sorted(
             results, key=lambda x: x['points'], reverse=True)
 
